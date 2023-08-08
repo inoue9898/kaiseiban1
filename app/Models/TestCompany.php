@@ -20,6 +20,11 @@ class TestCompany extends Model
         return $this->hasMany(TestProduct::class);
     }
 
+    public function showList() {
+        $companies = DB::table('test_companies')->get();
+        return $companies;
+    }
+
     // public function companies() {
     //     return $this->hasOne('App\Products');
     // }

@@ -8,17 +8,17 @@
 
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="text-left">
-				<h2 style="font-size:1rem;">商品一覧</h2>
+			<div>
+				<h2>商品一覧</h2>
 			</div>
-			<div class="text-right">
-			<a class="btn btn-success" href="{{ route('product.create') }}">新規登録</a>
+			<div>
+			<a class="btn btn-success" class1="btn" href="{{ route('product.create') }}">新規登録</a>
 			</div>
 		</div>
 	</div>
 
-	<div>
-	<form action="{{ route('list_product') }}" method="GET">
+	<div class="company">
+	<form action="{{ route('product.search') }}" method="GET">
 		
 		<select name="company_name">
 			<option value="">メーカー名</option>
@@ -27,13 +27,13 @@
 			@endforeach
 		</select>
 
-		<input type="text" name="keyword" placeholder="商品名">
-		<input type="submit" value="検索">
+		<input type="text" class="product" name="keyword" placeholder="商品名">
+		<input type="submit" class="search" value="検索">
 	</form>
 	</div>
 
-	<div class="table-responsive">
-	<table class="table table-borderd" style="width: 1000px max-width: 0 auto;">
+	<div class="table1">
+	<table class="table">
 		<tr>
 			<th>商品ID</th>
 			<th>商品画像</th>
@@ -50,7 +50,7 @@
 				<td>{{ $product->price }}</td>
 				<td>{{ $product->stock }}</td>
 				<td>{{ $product->company_name }}</td>
-				<td style="text-align:center">
+				<td>
 					<a class="btn btn-primary" href="{{ route ('product.detail',$product->id) }}">詳細</a>
 				</td>
 				<td>
@@ -65,9 +65,6 @@
 	</div>
 </div>
 </table>
-<div class="d-flex justify-content-center">
-
-</div>
 	@endsection
 
 

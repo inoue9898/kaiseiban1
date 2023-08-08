@@ -1,0 +1,33 @@
+
+
+.table1 {
+	margin-top: 40px;
+	margin-left: 100px;
+	margin-right: 100px;
+}
+
+.form-group {
+	margin: 60px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	width: 800px;
+}
+
+h2 {
+	margin: 100px;
+}
+
+.company {
+	padding-left: 100px;
+}
+
+a {
+	margin-left: 100px;
+}
+
+.custom-error {
+	/* エラーメッセージのスタイルを定義します */
+	color: red;
+	font-size: 14px;
+}
+

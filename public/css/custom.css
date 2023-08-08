@@ -1,0 +1,17 @@
+.custom-btn {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    padding: 10px;
+		margin-left: 30px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+}
+
+.custom-error {
+	/* エラーメッセージのスタイルを定義します */
+	color: red;
+	font-size: 14px;
+}
