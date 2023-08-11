@@ -7,7 +7,7 @@
 			<h2>商品登録画面</h2>
 		</div>
 		<div>
-			<a class="btn btn-success" href="{{ url('/list') }}">戻る</a>
+			<a class="btn" href="{{ url('/list') }}">戻る</a>
 		</div>
 	</div>
 </div>
@@ -54,14 +54,14 @@
 	<div class="custom-image">
 		<form action="{{ route('product.store') }}" enctype="multipart/form-data" method="POST"> 
 				@csrf
-				<input type="file" name="image">
+				<input type="file" name="image" class="image">
 				@error('image')
 				<span>画像を選択してください</span>
 				@enderror
 	</div>
 
-		<div class="custom-btn">
-			<button type="submit" class="btn btn-primary">登録</button>
+		<div>
+			<button type="submit" class="btn_sub">登録</button>
 		</div>
 		</form>
 </form>

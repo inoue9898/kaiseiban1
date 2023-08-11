@@ -12,7 +12,7 @@
 				<h2>商品一覧</h2>
 			</div>
 			<div>
-			<a class="btn btn-success" class1="btn" href="{{ route('product.create') }}">新規登録</a>
+			<a class="btn_st" class1="btn1" href="{{ route('product.create') }}">新規登録</a>
 			</div>
 		</div>
 	</div>
@@ -51,13 +51,13 @@
 				<td>{{ $product->stock }}</td>
 				<td>{{ $product->company_name }}</td>
 				<td>
-					<a class="btn btn-primary" href="{{ route ('product.detail',$product->id) }}">詳細</a>
+					<a class="btn_d" href="{{ route ('product.detail',$product->id) }}">詳細</a>
 				</td>
 				<td>
 					<form action="{{ route('product.delete', $product->id) }}" method="POST">
 						@csrf
 						@method('delete')
-						<button type="submit" class="btn btn-danger" onclick="return confirm('削除しますか？')">削除</button>
+						<button type="submit" class="btn_s" onclick="return confirm('削除しますか？')">削除</button>
 					</form>
 				</td>
 		</tr>

@@ -50,9 +50,9 @@
 				<span>入力してください</span>
 				@enderror
 			</div>
-		<input type="file" name="image">
-		<div class="custom-btn">
-			<button type="submit" class="btn btn-primary">更新</button>
+		<input type="file" name="image" class="image">
+		<div>
+			<button type="submit" class="btn_up">更新</button>
 		</div>
 	</div>
 </form>

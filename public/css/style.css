@@ -14,15 +14,11 @@
 }
 
 h2 {
-	margin: 100px;
+	margin: 60px;
 }
 
 .company {
 	padding-left: 100px;
-}
-
-a {
-	margin-left: 100px;
 }
 
 .custom-error {
@@ -31,3 +27,101 @@ a {
 	font-size: 14px;
 }
 
+.btn {
+    display: inline-block;
+    width: 100px;
+		margin-left: 60px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: green;
+    color: #fff;
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.btn_st {
+	display: inline-block;
+	border-radius: 5px;
+	margin-left: 100px;
+	margin-bottom: 20px;
+	padding: 8px 20px;
+	background: green;
+	color: #fff;
+	font-weight: 300;
+  font-size: 15px;
+	text-decoration: none;
+}
+
+.btn_d {
+	display: inline-block;
+	border-radius: 5px;
+	padding: 8px 20px;
+	background-color: blue;
+	color: #fff;
+	font-weight: 300;
+  font-size: 15px;
+	text-decoration: none;
+}
+
+.btn_s {
+	display: inline-block;
+	border-radius: 5px;
+	padding: 8px 20px;
+	background-color: red;
+	color: #fff;
+	font-weight: 300;
+  font-size: 15px;
+	text-decoration: none;
+}
+
+.btn_sub {
+	display: inline-block;
+	border-radius: 5px;
+	margin-left: 60px;
+	margin-top: 20px;
+	padding: 8px 20px;
+	background-color: red;
+	color: #fff;
+	font-weight: 300;
+  font-size: 15px;
+	text-decoration: none;
+}
+
+.image {
+	margin-left: 60px;
+}
+
+span {
+	color: red;
+}
+
+.btn_up {
+	display: inline-block;
+	border-radius: 5px;
+	margin-left: 60px;
+	margin-top: 20px;
+	padding: 8px 20px;
+	background-color: red;
+	color: #fff;
+	font-weight: 300;
+  font-size: 15px;
+	text-decoration: none;
+}
+
+.td {
+	padding: 500px;
+}
+
+.btn_e {
+	display: inline-block;
+	border-radius: 5px;
+	margin-left: 60px;
+	margin-top: 20px;
+	padding: 8px 20px;
+	background-color: red;
+	color: #fff;
+	font-weight: 300;
+  font-size: 15px;
+	text-decoration: none;
+}
