@@ -125,3 +125,8 @@ span {
   font-size: 15px;
 	text-decoration: none;
 }
+
+.h2 {
+	margin-left: 80px;
+	padding: 20px;
+}

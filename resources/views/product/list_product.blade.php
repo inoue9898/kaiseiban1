@@ -6,16 +6,12 @@
 <div class="alert alert-success">{{ session('message') }}</div>
 @endif
 
-	<div class="row">
-		<div class="col-lg-12">
 			<div>
-				<h2>商品一覧</h2>
+				<h2 class="h2">商品一覧</h2>
 			</div>
 			<div>
 			<a class="btn_st" class1="btn1" href="{{ route('product.create') }}">新規登録</a>
 			</div>
-		</div>
-	</div>
 
 	<div class="company">
 	<form action="{{ route('product.search') }}" method="GET">
