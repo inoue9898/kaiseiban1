@@ -17,7 +17,7 @@
 				<tr><th>ID:</th><td>{{ $product->id }}</td></tr>
 			</div>
 			<div class="form-group">
-				 <tr><th>画像</th><td><img src="{{ asset('storage/images/'.$product->img_path)}}"></td></tr>
+				 <tr><th>画像</th><td><img class="img" src="{{ asset('storage/'.$product->img_path)}}"></td></tr>
 			</div>
 			<div class="form-group">
 				<tr><th>商品名:</th><td>{{ $product->product_name }}</td></tr>

@@ -78,6 +78,24 @@ class TestProduct extends Model
 
         $this->save();
     }
+    // public function getStore(Request $request) {
+    //     $data = new TestProduct();
+    //     $data->product_name = $request->input('product_name');
+    //     $data->company_id = $request->input('company_name');
+    //     $data->price = $request->input('price');
+    //     $data->stock = $request->input('stock');
+    //     $data->comment = $request->input('comment');
+
+    // //画像アップロード
+    // if ($request->hasFile('image')) {
+    //     $name = $request->file('image')->getClientOriginalName();
+    //     $file = $request->file('image')->storeAs('public/images', $name);
+    //     $data->img_path = 'images/'.$name;
+    // }
+
+    //     $data->save();
+    // }
+   
 
     //詳細ボタン
     public function detail($id) {
@@ -108,6 +126,7 @@ class TestProduct extends Model
         $product = TestProduct::find($id);
 
         $product->product_name = $request->input('product_name');
+        $product->company_id = $request->input('company_name');
         $product->price = $request->input('price');
         $product->stock = $request->input('stock');
         $product->comment = $request->input('comment');

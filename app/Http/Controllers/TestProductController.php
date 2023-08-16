@@ -62,6 +62,7 @@ class TestProductController extends Controller
     
             $product_model = new TestProduct();
             $product_model->getStore($data, $request->file('image'));
+            
     
             DB::commit();
         } catch (\Exception $e) {
