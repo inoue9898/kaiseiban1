@@ -35,6 +35,7 @@ class TestProduct extends Model
     //検索処理
     public function getSearch($keyword,$searchCompany) {
 
+       //$price = 0;
         $query = DB::table('test_products')
         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
         ->select('test_products.*', 'test_companies.company_name');
@@ -46,6 +47,10 @@ class TestProduct extends Model
         if($searchCompany) {
             $query->where('test_products.company_id', '=', "$searchCompany");
         }
+
+        // if($price) {
+        //     $query->where('test_products.price', '>=', $price);
+        // }
 
         $products = $query->get();
 

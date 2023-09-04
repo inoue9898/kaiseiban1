@@ -14,8 +14,8 @@
 			</div>
 
 	<div class="company">
-	<form action="{{ route('product.search') }}" method="GET">
-		
+	<form id="searchForm" action="{{ route('product.search') }}" method="GET">
+	@csrf
 		<select name="company_name">
 			<option value="">メーカー名</option>
 			@foreach($companies as $company)
@@ -24,6 +24,8 @@
 		</select>
 
 		<input type="text" class="product" name="keyword" placeholder="商品名">
+		<input type="text" class="price" name="price" placeholder="価格下限〜上限">
+		<input type="text" class="stock" name="stock" placeholder="在庫数下限〜上限">
 		<input type="submit" class="search" value="検索">
 	</form>
 	</div>
