@@ -24,15 +24,19 @@
 		</select>
 
 		<input type="text" class="product" name="keyword" placeholder="商品名">
-		<input type="text" class="price" name="price" placeholder="価格下限〜上限">
-		<input type="text" class="stock" name="stock" placeholder="在庫数下限〜上限">
+		<input type="text" class="price" name="min_price" placeholder="価格下限~">
+		<input type="text" class="price" name="max_price" placeholder="価格上限">
+
+		<input type="text" class="stock" name="min_stock" placeholder="在庫下限~">
+		<input type="text" class="stock" name="max_stock" placeholder="在庫上限">
+
 		<input type="submit" class="search" value="検索">
 	</form>
 	</div>
 
 	<div class="table1">
 	<table class="table">
-		<tr>
+		<tr name="sort">
 			<th>商品ID</th>
 			<th>商品画像</th>
 			<th>商品名</th>

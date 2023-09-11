@@ -17,21 +17,34 @@ class TestProductController extends Controller
 
         $productModel = new TestProduct();
         $companyModel = new TestCompany();
-        $products = $productModel->showList()->get();
+        $products = $productModel->showList();
         $companies = $companyModel->showList();
 
-        return view('product.list_product', ['products' => $products, 'companies' => $companies]);
+        // $sortBy = $request->input('sort_by', 'id');
+        // $sortOrder = $request->input('sort_order', 'asc');
+
+        // $testProducts = TestProduct::orderBy($sortBy, $sortOrder)->get();
+        
+
+        return view('product.list_product', ['products' => $products, 'companies' => $companies,
+                                            ]);
 
     }
     //検索
     public function search(Request $request) {
         $keyword = $request->input('keyword');
         $searchCompany = $request->input('company_name');
+        $min_price = $request->input('min_price');
+        $max_price = $request->input('max_price');
+        $min_stock = $request->input('min_stock');
+        $max_stock = $request->input('max_stock');
+
 
             $productModel = new TestProduct();
             $companyModel = new TestCompany();
-            $products = $productModel->getSearch($keyword,$searchCompany);
+            $products = $productModel->getSearch($keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock);
             $companies = $companyModel->showList();
+           
 
         return view('product.list_product', ['products' => $products, 'companies' => $companies]);
 

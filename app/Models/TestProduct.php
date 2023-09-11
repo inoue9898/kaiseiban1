@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Kyslik\CoulumnSortable\Sortable;
 
 
 class TestProduct extends Model
@@ -29,32 +30,51 @@ class TestProduct extends Model
         $query = DB::table('test_products')
             ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
             ->select('test_products.*', 'test_companies.company_name');
-        return $query;
+
+        $data = $query->get();
+        
+        return $data;
 
     }
     //検索処理
-    public function getSearch($keyword,$searchCompany) {
+    public function getSearch($keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock) {
 
-       //$price = 0;
         $query = DB::table('test_products')
         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
         ->select('test_products.*', 'test_companies.company_name');
 
-        if($keyword) {
+        if ($keyword) {
             $query->where('test_products.product_name', 'like', "%{$keyword}%");
         }
 
-        if($searchCompany) {
+        if ($searchCompany) {
             $query->where('test_products.company_id', '=', "$searchCompany");
         }
+        //価格の下限〜上限検索
+        if ($min_price && $max_price) {
+            $query->whereBetween('test_products.price', [$min_price, $max_price]);
 
-        // if($price) {
-        //     $query->where('test_products.price', '>=', $price);
-        // }
+        } elseif ($min_price) {
+            $query->where('test_products.price', '>=', $min_price);
+
+        } elseif ($max_price) {
+            $query->where('test_products.price', '<=', $min_price);
+
+        }
+        //在庫の下限〜上限検索
+        if ($min_stock && $max_stock) {
+            $query->whereBetween('test_products.stock', [$min_stock, $max_stock]);
+
+        } elseif ($min_stock) {
+            $query->where('test_products.stock', '>=', $min_stock);
+
+        } elseif ($max_price) {
+            $query->where('test_products.stock', '<=', $max_stock);
+
+        }
 
         $products = $query->get();
 
-        //$companies = DB::table('test_companies')->get();
         return $products;
 
     }
