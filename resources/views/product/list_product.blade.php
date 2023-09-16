@@ -35,18 +35,25 @@
 	</div>
 
 	<div class="table1">
-	<table class="table">
+	<table id="productTable" class="table">
 		<tr name="sort">
 			<th>商品ID</th>
 			<th>商品画像</th>
 			<th>商品名</th>
-			<th>価格</th>
-			<th>在庫数</th>
+			<th scope="col">@sortablelink('price', '価格')</th>
+			<th scope="col">@sortablelink('stock', '在庫数')</th>
+
+			<!-- <th id="sort_by">
+				価格
+				</th>
+			<th id="sort_by">
+				在庫数
+			</th> -->
 			<th>メーカー名</th>
 		</tr>
 		@foreach ($products as $product)
 		<tr>
-				<td>{{ $product->id }}</td>
+				<td scope="row">{{ $product->id }}</td>
 				<td><img src="{{ asset('storage/'.$product->img_path)}}"></td>
 				<td>{{ $product->product_name }}</td>
 				<td>{{ $product->price }}</td>
@@ -56,7 +63,7 @@
 					<a class="btn_d" href="{{ route ('product.detail',$product->id) }}">詳細</a>
 				</td>
 				<td>
-					<form action="{{ route('product.delete', $product->id) }}" method="POST">
+					<form id="deleteForm" action="{{ route('product.delete', $product->id) }}" method="POST">
 						@csrf
 						@method('delete')
 						<button type="submit" class="btn_s" onclick="return confirm('削除しますか？')">削除</button>

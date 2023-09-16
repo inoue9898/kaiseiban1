@@ -15,23 +15,34 @@ class TestProductController extends Controller
     //test_productsから受け取ったデータをviewのlistに。
     public function showList(Request $request) {
 
+        $query = TestProduct::sortable();
+
+        //$products = $query->sortable();
+
         $productModel = new TestProduct();
         $companyModel = new TestCompany();
         $products = $productModel->showList();
         $companies = $companyModel->showList();
-
-        // $sortBy = $request->input('sort_by', 'id');
-        // $sortOrder = $request->input('sort_order', 'asc');
-
-        // $testProducts = TestProduct::orderBy($sortBy, $sortOrder)->get();
         
+        // return view('product.list_product', ['products' => $products, 'companies' => $companies,]);
 
-        return view('product.list_product', ['products' => $products, 'companies' => $companies,
-                                            ]);
+        //ダメならコメントアウトもどす！！
+        $sortBy = $request->input('sort_by', 'id');
+        $sortOrder = $request->input('sort_order', 'asc');
+
+        $testProducts = TestProduct::orderBy($sortBy, $sortOrder)->get();
+
+        return view('product.list_product', ['products' => $products, 'companies' => $companies, 'query' => $query]);
+                                             //'sortBy' => $sortBy, 'sortOrder' => $sortOrder]);
 
     }
     //検索
     public function search(Request $request) {
+
+        $productModel = new TestProduct();
+        $companyModel = new TestCompany();
+
+        
         $keyword = $request->input('keyword');
         $searchCompany = $request->input('company_name');
         $min_price = $request->input('min_price');
@@ -40,11 +51,10 @@ class TestProductController extends Controller
         $max_stock = $request->input('max_stock');
 
 
-            $productModel = new TestProduct();
-            $companyModel = new TestCompany();
+            // $productModel = new TestProduct();
+            // $companyModel = new TestCompany();
             $products = $productModel->getSearch($keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock);
             $companies = $companyModel->showList();
-           
 
         return view('product.list_product', ['products' => $products, 'companies' => $companies]);
 

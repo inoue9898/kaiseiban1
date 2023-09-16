@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Kyslik\CoulumnSortable\Sortable;
-
+use Kyslik\ColumnSortable\Sortable;
 
 class TestProduct extends Model
 {
     use HasFactory;
+    use Sortable;
     protected $table = 'test_products';
     protected $fillable =[
         'id','company_id',
@@ -19,6 +19,8 @@ class TestProduct extends Model
         'stock', 'comment', 'img_path',
         'created_at', 'updated_at'
     ];
+
+    protected $sortable = ['id', 'product_name', 'price', 'stock'];
 
     //test_productsからcompany()で、データを取得
     public function company() {
@@ -32,7 +34,7 @@ class TestProduct extends Model
             ->select('test_products.*', 'test_companies.company_name');
 
         $data = $query->get();
-        
+
         return $data;
 
     }
@@ -47,10 +49,25 @@ class TestProduct extends Model
             $query->where('test_products.product_name', 'like', "%{$keyword}%");
         }
 
-        if ($searchCompany) {
-            $query->where('test_products.company_id', '=', "$searchCompany");
-        }
-        //価格の下限〜上限検索
+        // if ($searchCompany) {
+        //     $query->where('test_products.company_id', '=', "$searchCompany");
+        // }
+        // //価格の下限〜上限検索
+        // if(!empty($min_price)) {
+        //     $query->where('test_products.price', '>=', $min_price);
+        // }
+
+        // if(!empty($max_price)) {
+        //     $query->where('test_products.price', '<=', $max_price);
+        // }
+
+        // if(!empty($min_stock)) {
+        //     $query->where('test_products.stock', '>=', $min_stock);
+        // }
+
+        // if(!empty($max_stock)) {
+        //     $query->where('test_products.stock', '>=', $max_stock);
+        // }
         if ($min_price && $max_price) {
             $query->whereBetween('test_products.price', [$min_price, $max_price]);
 

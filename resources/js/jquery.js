@@ -23,46 +23,29 @@
 		});
 	});
 
-	// $(function() {
-	// 	$('.sort').on('click', function(event) {
-	// 		event.preventDefault();
-	// 		$.ajax({
-	// 			url: '/list',
-	// 			type: 'GET',
-	// 			data: $('#tableList'),
-	// 			dataType: 'html'
-
-	// 		}).done(function(data) {
-	// 			let newTableData = generateNewTableData();
-	// 			$('.table').html(newTableData)
-
-	// 		}).fail(function(data) {
-	// 			alert('通信失敗');
-	// 		})
-	// 	});
-	// });
-
 	//削除
-	// $(function() {
+	$(function() {
 
-	// 	$('.btn_s').on('click',function (event) {
-	// 		//リロードを阻止する
-	// 		event.preventDefault();
-	// 		$.ajax({
-	// 			url: '/product/delete/' + itemId,
-	// 			type: 'delete',
-	// 			data: $('#deleteForm').serialize(),//formの中身を送る。
-	// 			dataType: 'html'
+		$('.btn_s').on('click',function (event) {
+			//リロードを阻止する
+			event.preventDefault();
+			$.ajax({
+				url: '/product/delete',
+				type: 'delete',
+				data: $('#deleteForm').serialize(),//formの中身を送る。
+				dataType: 'html'
 				
-	// 			//dataを受け取る
-	// 		}).done(function(data) {
-	// 			//検索結果のtableがnewTableに入れる
-	// 			let newTable = $(data).find('.table')
-	// 			//差し替える検索結果
-	// 			$('.table').html(newTable)
+				//dataを受け取る
+			}).done(function(data) {
+				//検索結果のtableがnewTableに入れる
+				let newTable = $(data).find('.table')
+
+				$('.table').remove();
+
+				$('.table').append(newTable);
 			
-	// 		}).fail(function(data) {
-	// 			alert('通信失敗');
-	// 		});
-	// 	});
-	// });
+			}).fail(function(data) {
+				alert('通信失敗');
+			});
+		});
+	});
