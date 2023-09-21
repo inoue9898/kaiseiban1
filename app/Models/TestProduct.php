@@ -5,12 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use Kyslik\ColumnSortable\Sortable;
+use Illuminate\Http\Request;
+
 
 class TestProduct extends Model
 {
-    use HasFactory;
     use Sortable;
     protected $table = 'test_products';
     protected $fillable =[
@@ -20,7 +20,7 @@ class TestProduct extends Model
         'created_at', 'updated_at'
     ];
 
-    protected $sortable = ['id', 'product_name', 'price', 'stock'];
+    protected $sortable = ['id', 'company_id', 'product_name', 'price', 'stock', 'comment', 'img_path', 'created_at', 'updated_at'];
 
     //test_productsからcompany()で、データを取得
     public function company() {
@@ -32,12 +32,68 @@ class TestProduct extends Model
         $query = DB::table('test_products')
             ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
             ->select('test_products.*', 'test_companies.company_name');
+        
+        $data = $query->get();
+
+        return $data;
+
+    }
+
+    //ソート
+    public function sortList($sortColumn, $sortDirection) {
+        $query = DB::table('test_products')
+            ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
+            ->select('test_products.*', 'test_companies.company_name')
+            ->orderBy($sortColumn, $sortDirection);
 
         $data = $query->get();
 
         return $data;
 
     }
+
+//試し
+    // public function sortList($sortColumn, $sortDirection,$keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock) {
+    //     $query = DB::table('test_products')
+    //         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
+    //         ->select('test_products.*', 'test_companies.company_name')
+    //         ->orderBy($sortColumn, $sortDirection);
+
+    //         if ($keyword) {
+    //             $query->where('test_products.product_name', 'like', "%{$keyword}%");
+    //         }
+    
+    //         if ($searchCompany) {
+    //             $query->where('test_products.company_id', '=', "$searchCompany");
+    //         }
+            
+    //         if ($min_price && $max_price) {
+    //             $query->whereBetween('test_products.price', [$min_price, $max_price]);
+    
+    //         } elseif ($min_price) {
+    //             $query->where('test_products.price', '>=', $min_price);
+    
+    //         } elseif ($max_price) {
+    //             $query->where('test_products.price', '<=', $min_price);
+    
+    //         }
+    //         //在庫の下限〜上限検索
+    //         if ($min_stock && $max_stock) {
+    //             $query->whereBetween('test_products.stock', [$min_stock, $max_stock]);
+    
+    //         } elseif ($min_stock) {
+    //             $query->where('test_products.stock', '>=', $min_stock);
+    
+    //         } elseif ($max_price) {
+    //             $query->where('test_products.stock', '<=', $max_stock);
+    
+    //         }
+
+    //     $data = $query->get();
+
+    //     return $data;
+
+    // }
     //検索処理
     public function getSearch($keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock) {
 
@@ -49,25 +105,10 @@ class TestProduct extends Model
             $query->where('test_products.product_name', 'like', "%{$keyword}%");
         }
 
-        // if ($searchCompany) {
-        //     $query->where('test_products.company_id', '=', "$searchCompany");
-        // }
-        // //価格の下限〜上限検索
-        // if(!empty($min_price)) {
-        //     $query->where('test_products.price', '>=', $min_price);
-        // }
-
-        // if(!empty($max_price)) {
-        //     $query->where('test_products.price', '<=', $max_price);
-        // }
-
-        // if(!empty($min_stock)) {
-        //     $query->where('test_products.stock', '>=', $min_stock);
-        // }
-
-        // if(!empty($max_stock)) {
-        //     $query->where('test_products.stock', '>=', $max_stock);
-        // }
+        if ($searchCompany) {
+            $query->where('test_products.company_id', '=', "$searchCompany");
+        }
+        
         if ($min_price && $max_price) {
             $query->whereBetween('test_products.price', [$min_price, $max_price]);
 

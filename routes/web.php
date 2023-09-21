@@ -47,5 +47,7 @@ Route::get('/product/search',[App\Http\Controllers\TestProductController::class,
 //更新ボタンを押下
 Route::put('/product/update/{id}',[App\Http\Controllers\TestProductController::class, 'update'])
 ->name('product.update');
+//ソート機能
+Route::get('product/sort', [App\Http\Controllers\TestProductController::class, 'sort'])->name('sort');
 
 

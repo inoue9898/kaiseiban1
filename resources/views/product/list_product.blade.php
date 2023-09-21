@@ -24,31 +24,26 @@
 		</select>
 
 		<input type="text" class="product" name="keyword" placeholder="商品名">
-		<input type="text" class="price" name="min_price" placeholder="価格下限~">
-		<input type="text" class="price" name="max_price" placeholder="価格上限">
+		<input type="text" class="price" name="min_price" placeholder="価格下限~">円〜
+		<input type="text" class="price" name="max_price" placeholder="価格上限">円
 
-		<input type="text" class="stock" name="min_stock" placeholder="在庫下限~">
-		<input type="text" class="stock" name="max_stock" placeholder="在庫上限">
+		<input type="text" class="stock" name="min_stock" placeholder="在庫下限~">個〜
+		<input type="text" class="stock" name="max_stock" placeholder="在庫上限">個
 
 		<input type="submit" class="search" value="検索">
 	</form>
 	</div>
 
 	<div class="table1">
-	<table id="productTable" class="table">
+	<table id="sorter" class="table">
 		<tr name="sort">
 			<th>商品ID</th>
 			<th>商品画像</th>
 			<th>商品名</th>
-			<th scope="col">@sortablelink('price', '価格')</th>
-			<th scope="col">@sortablelink('stock', '在庫数')</th>
-
-			<!-- <th id="sort_by">
-				価格
-				</th>
-			<th id="sort_by">
-				在庫数
-			</th> -->
+			<th>価格<a href="{{ route('sort', ['sort' => 'price', 'direction' => 'asc']) }}">昇順</a>
+			<a href="{{ route('sort',['sort' => 'price', 'direction' => 'desc']) }}">降順</a></th>
+			<th>在庫数<a href="{{ route('sort', ['sort' => 'stock', 'direction' => 'asc']) }}">昇順</a>
+			<a href="{{ route('sort', ['sort' => 'stock', 'direction' => 'desc']) }}">降順</a></th>
 			<th>メーカー名</th>
 		</tr>
 		@foreach ($products as $product)
@@ -66,7 +61,7 @@
 					<form id="deleteForm" action="{{ route('product.delete', $product->id) }}" method="POST">
 						@csrf
 						@method('delete')
-						<button type="submit" class="btn_s" onclick="return confirm('削除しますか？')">削除</button>
+						<button data-delete_id="{{ $product->id }}" type="submit" class="btn_s" onclick="return confirm('削除しますか？')">削除</button>
 					</form>
 				</td>
 		</tr>
