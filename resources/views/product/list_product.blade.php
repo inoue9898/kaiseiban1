@@ -35,40 +35,41 @@
 	</div>
 
 	<div class="table1">
-	<table id="sorter" class="table">
-		<tr name="sort">
-			<th>商品ID</th>
-			<th>商品画像</th>
-			<th>商品名</th>
-			<th>価格<a href="{{ route('sort', ['sort' => 'price', 'direction' => 'asc']) }}">昇順</a>
-			<a href="{{ route('sort',['sort' => 'price', 'direction' => 'desc']) }}">降順</a></th>
-			<th>在庫数<a href="{{ route('sort', ['sort' => 'stock', 'direction' => 'asc']) }}">昇順</a>
-			<a href="{{ route('sort', ['sort' => 'stock', 'direction' => 'desc']) }}">降順</a></th>
-			<th>メーカー名</th>
-		</tr>
+	<table id="fav-table" class="table">
+		<thead>
+			<tr>
+				<th>商品ID</th>
+				<th>商品画像</th>
+				<th>商品名</th>
+				<th data-sorter="price">価格</th>
+				<th data-sorter="stock">在庫数</th>
+				<th>メーカー名</th>
+			</tr>
+		</thead>
 		@foreach ($products as $product)
-		<tr>
-				<td scope="row">{{ $product->id }}</td>
-				<td><img src="{{ asset('storage/'.$product->img_path)}}"></td>
-				<td>{{ $product->product_name }}</td>
-				<td>{{ $product->price }}</td>
-				<td>{{ $product->stock }}</td>
-				<td>{{ $product->company_name }}</td>
-				<td>
-					<a class="btn_d" href="{{ route ('product.detail',$product->id) }}">詳細</a>
-				</td>
-				<td>
-					<form id="deleteForm" action="{{ route('product.delete', $product->id) }}" method="POST">
-						@csrf
-						@method('delete')
-						<button data-delete_id="{{ $product->id }}" type="submit" class="btn_s" onclick="return confirm('削除しますか？')">削除</button>
-					</form>
-				</td>
-		</tr>
+		<tbody>
+			<tr>
+					<td scope="row">{{ $product->id }}</td>
+					<td><img src="{{ asset('storage/'.$product->img_path)}}"></td>
+					<td>{{ $product->product_name }}</td>
+					<td>{{ $product->price }}</td>
+					<td>{{ $product->stock }}</td>
+					<td>{{ $product->company_name }}</td>
+					<td>
+						<a class="btn_d" href="{{ route ('product.detail',$product->id) }}">詳細</a>
+					</td>
+					<td>
+						<form id="deleteForm" action="{{ route('product.delete', $product->id) }}" method="POST">
+							@csrf
+							@method('delete')
+							<button data-delete_id="{{ $product->id }}" type="submit" class="btn_s" onclick="return confirm('削除しますか？')">削除</button>
+						</form>
+					</td>
+			</tr>
 		@endforeach
+		</tbody>
+	</table>
 	</div>
-</div>
-</table>
 	@endsection
 
 

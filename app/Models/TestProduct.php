@@ -39,20 +39,20 @@ class TestProduct extends Model
 
     }
 
-    //ソート
-    public function sortList($sortColumn, $sortDirection) {
-        $query = DB::table('test_products')
-            ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
-            ->select('test_products.*', 'test_companies.company_name')
-            ->orderBy($sortColumn, $sortDirection);
+    //ソート成功版
+    // public function sortList($sortColumn, $sortDirection) {
+    //     $query = DB::table('test_products')
+    //         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
+    //         ->select('test_products.*', 'test_companies.company_name')
+    //         ->orderBy($sortColumn, $sortDirection);
 
-        $data = $query->get();
+    //     $data = $query->get();
 
-        return $data;
+    //     return $data;
 
-    }
+    // }
 
-//試し
+//試しソートモデル
     // public function sortList($sortColumn, $sortDirection,$keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock) {
     //     $query = DB::table('test_products')
     //         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
