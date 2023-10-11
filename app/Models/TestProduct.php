@@ -39,61 +39,6 @@ class TestProduct extends Model
 
     }
 
-    //ソート成功版
-    // public function sortList($sortColumn, $sortDirection) {
-    //     $query = DB::table('test_products')
-    //         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
-    //         ->select('test_products.*', 'test_companies.company_name')
-    //         ->orderBy($sortColumn, $sortDirection);
-
-    //     $data = $query->get();
-
-    //     return $data;
-
-    // }
-
-//試しソートモデル
-    // public function sortList($sortColumn, $sortDirection,$keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock) {
-    //     $query = DB::table('test_products')
-    //         ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
-    //         ->select('test_products.*', 'test_companies.company_name')
-    //         ->orderBy($sortColumn, $sortDirection);
-
-    //         if ($keyword) {
-    //             $query->where('test_products.product_name', 'like', "%{$keyword}%");
-    //         }
-    
-    //         if ($searchCompany) {
-    //             $query->where('test_products.company_id', '=', "$searchCompany");
-    //         }
-            
-    //         if ($min_price && $max_price) {
-    //             $query->whereBetween('test_products.price', [$min_price, $max_price]);
-    
-    //         } elseif ($min_price) {
-    //             $query->where('test_products.price', '>=', $min_price);
-    
-    //         } elseif ($max_price) {
-    //             $query->where('test_products.price', '<=', $min_price);
-    
-    //         }
-    //         //在庫の下限〜上限検索
-    //         if ($min_stock && $max_stock) {
-    //             $query->whereBetween('test_products.stock', [$min_stock, $max_stock]);
-    
-    //         } elseif ($min_stock) {
-    //             $query->where('test_products.stock', '>=', $min_stock);
-    
-    //         } elseif ($max_price) {
-    //             $query->where('test_products.stock', '<=', $max_stock);
-    
-    //         }
-
-    //     $data = $query->get();
-
-    //     return $data;
-
-    // }
     //検索処理
     public function getSearch($keyword, $searchCompany, $min_price, $max_price, $min_stock, $max_stock) {
 

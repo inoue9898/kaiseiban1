@@ -9,8 +9,10 @@ class Sale extends Model
 {
     use HasFactory;
 
-    protected $table = 'sales';
-    protected $dates = ['created_at', 'updated_at'];
-    protected $fillable = ['id', 'product_id'];
+    // public function sale($id) 
+    // {
+    //     $product = TestProduct::find($id);
 
+
+    // }
 }

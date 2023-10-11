@@ -46,8 +46,8 @@
 				<th>メーカー名</th>
 			</tr>
 		</thead>
+		<tbody class="tbody">
 		@foreach ($products as $product)
-		<tbody>
 			<tr>
 					<td scope="row">{{ $product->id }}</td>
 					<td><img src="{{ asset('storage/'.$product->img_path)}}"></td>

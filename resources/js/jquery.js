@@ -30,9 +30,17 @@ $.ajaxSetup({
 				//dataを受け取る
 			}).done(function(data) {
 				//検索結果のtableがnewTableに入れる
-				let newTable = $(data).find('.table');
+				let newTable = $(data).find('.table')
 				//差し替える検索結果
-				$('.table').html(newTable);
+				$('.table').html(newTable)
+				$('.table').tablesorter({
+					headers: {
+						1: { sorter: false },
+						2: { sorter: false },
+						5: { sorter: false },
+						6: { sorter: false }
+				 }
+				});
 			
 			}).fail(function(data) {
 				alert('通信失敗');
@@ -71,60 +79,6 @@ $.ajaxSetup({
 });
 
 
-//悪くはなかったので次悪ければコメントアウトを戻す！！！！！！！！！！！！！
-
-// 	$(function() {
-//     $('.search').on('click',function (event) {
-//         // リロードを阻止する
-//         event.preventDefault();
-
-//         // 検索データの取得
-//         let searchData = $('#searchForm').serialize();
-//         // ソートの情報を取得
-//         let sortInfo = getSortInfo(); // ソート情報を取得するカスタムした関数
-//         // 検索クエリとソート情報の結合
-//         let requestData = searchData + '&' + sortInfo;
-
-//         $.ajax({
-//             url: 'product/search',
-//             type: 'GET',
-//             data: requestData,
-//             dataType: 'html'
-//         }).done(function(data) {
-//             // 検索結果のtableがnewTableに入れる
-//             let newTable = $(data).find('.table');
-//             // 差し替える検索結果
-//             $('.table').html(newTable);
-        
-//         }).fail(function(data) {
-//             alert('通信失敗');
-//         });
-//     });
-
-//     function getSortInfo() {
-//         let sortInfo = [];
-//         $('.table th').each(function(index) {
-//             let sorter = $(this).data('sorter');
-//             sortInfo.push('sort[' + index + ']=' + sorter);
-//         });
-//         return sortInfo.join('&');
-//     }
-// });
-
-
-	// $(function() {
-	// 	$('#sorter').tablesorter({
-	// 		headers: {
-	// 			0: { sorter: "digit"},
-	// 			1: { sorter: "text"},
-	// 			2: { sorter: "text"},
-	// 			3: { sorter: "digit"},
-	// 			4: { sorter: "digit"},
-	// 			5: { sorter: "text"},
-	// 		}
-	// 	});
-	// });
-
 	//削除
 	$(function() {
 		$('.btn_s').on('click', function(event) {
@@ -137,7 +91,7 @@ $.ajaxSetup({
 			$.ajax({
 
 				type: 'POST',
-				url: 'delete/' + deleteId,
+				url: 'product/delete/' + deleteId,
 				dataType: 'html',
 				data: {'id': deleteId, '_method': 'DELETE'}
 
@@ -153,23 +107,3 @@ $.ajaxSetup({
 		});
 	});
 
-// ソート機能
-// $(document).ready(function () {
-// 	// テーブルヘッダーのクリックハンドラ
-// 	$('th[data-sortable]').on('click', function () {
-// 			var columnName = $(this).data('sortable'); // クリックされたヘッダーのソート対象カラム名
-
-// 			// ソートリクエストをサーバーに送信
-// 			$.ajax({
-// 					type: 'GET',
-// 					url: "sort", // 現在のURLにソートクエリを追加
-// 					data: { sort: columnName }, // ソートカラム名を送信
-// 					dataType: 'html',
-// 			}).done(function(data){
-// 					let newTable = $(data).find('.table')
-// 					$('.table').html(newTable)
-// 			}).fail(function(data) {
-// 					alert('通信失敗');
-// 			});
-// 	});
-// });
