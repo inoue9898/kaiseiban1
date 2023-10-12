@@ -71,7 +71,7 @@ class TestProduct extends Model
         } elseif ($min_stock) {
             $query->where('test_products.stock', '>=', $min_stock);
 
-        } elseif ($max_price) {
+        } elseif ($max_stock) {
             $query->where('test_products.stock', '<=', $max_stock);
 
         }
@@ -81,6 +81,71 @@ class TestProduct extends Model
         return $products;
 
     }
+
+    //試し検索
+    // public function getSearch($keyword, $searchCompany) {
+
+    //     $query = DB::table('test_products')
+    //     ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
+    //     ->select('test_products.*', 'test_companies.company_name');
+
+    //     if ($keyword) {
+    //         $query->where('test_products.product_name', 'like', "%{$keyword}%");
+    //     }
+
+    //     if ($searchCompany) {
+    //         $query->where('test_products.company_id', '=', "$searchCompany");
+    //     }
+
+    //     $products = $query->get();
+
+    //     return $products;
+
+    // }
+    // //試し価格検索
+    // public function getPrice($min_price,$max_price) {
+    //     $query = DB::table('test_products')
+    //     ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
+    //     ->select('test_products.*', 'test_companies.company_name');
+
+    //     if ($min_price && $max_price) {
+    //         $query->whereBetween('test_products.price', [$min_price, $max_price]);
+
+    //     } elseif ($min_price) {
+    //         $query->where('test_products.price', '>=', $min_price);
+
+    //     } elseif ($max_price) {
+    //         $query->where('test_products.price', '<=', $min_price);
+    //     }
+
+    //     $products = $query->get();
+
+    //     return $products;
+
+    // }
+
+    //試し在庫検索
+    // public function getStock($min_stock,$max_stock) {
+    //     $query = DB::table('test_products')
+    //     ->join('test_companies', 'test_products.company_id', '=', 'test_companies.id')
+    //     ->select('test_products.*', 'test_companies.company_name');
+
+    //     if ($min_stock && $max_stock) {
+    //         $query->whereBetween('test_products.stock', [$min_stock, $max_stock]);
+
+    //     } elseif ($min_stock) {
+    //         $query->where('test_products.stock', '>=', $min_stock);
+
+    //     } elseif ($max_stock) {
+    //         $query->where('test_products.stock', '<=', $max_stock);
+
+    //     }
+
+    //     $products = $query->get();
+
+    //     return $products;
+    // }
+        
 
     //新規登録ボタン押下
     public function getCreate() {

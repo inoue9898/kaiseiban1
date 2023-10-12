@@ -47,6 +47,60 @@ class TestProductController extends Controller
 
     }
 
+    // //試し検索
+    // public function search(Request $request) {
+
+    //     $productModel = new TestProduct();
+    //     $companyModel = new TestCompany();
+
+        
+    //     $keyword = $request->input('keyword');
+    //     $searchCompany = $request->input('company_name');
+    //     $min_price = $request->input('min_price');
+    //     $max_price = $request->input('max_price');
+    //     $min_stock = $request->input('min_stock');
+    //     $max_stock = $request->input('max_stock');
+
+
+
+    //     $products = $productModel->getSearch($keyword, $searchCompany);
+    //     $companies = $companyModel->showList();
+
+    //     return view('product.list_product', ['products' => $products, 'companies' => $companies]);
+
+    // }
+    // //試し検索
+    // public function price(Request $request) {
+
+    //     $productModel = new TestProduct();
+    //     $companyModel = new TestCompany();
+
+    //     $min_price = $request->input('min_price');
+    //     $max_price = $request->input('max_price');
+
+    //     $products = $productModel->getPrice($min_price,$max_price);
+    //     $companies = $companyModel->showList();
+
+    //     return view('product.list_product',['products' => $products, 'companies' => $companies]);
+        
+    // }
+    // //試し検索
+    // public function stock(Request $request) {
+
+    //     $productModel = new TestProduct();
+    //     $companyModel = new TestCompany();
+
+    //     $min_stock = $request->input('min_stock');
+    //     $max_stock = $request->input('max_stock');
+
+    //     $products = $productModel->getStock($min_stock,$max_stock);
+    //     $companies = $companyModel->showList();
+
+    //     return view('product.list_product',['products' => $products, 'companies' => $companies]);
+        
+    // }
+
+
     //新規登録ボタンを押した時の処理
     public function create() {
 
